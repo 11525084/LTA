@@ -60,20 +60,8 @@ class Button(pygame.sprite.Sprite):
         self.sound = pygame.mixer.Sound('existentialtaco-confirm-tap-394001.mp3')
 
 
-    """def pressbutton(self,event):
-        if event.type == pygame.KEYDOWN:
-            if event.key == self.target_key:
-                self.sound.play()
-                # Visual feedback: flash the button color
-                self.image.fill((255, 255, 255))"""
 
-
-
-    """ self.pressbutton(event)
-            if event.type == pygame.KEYDOWN:
-            target_key = pygame.key.key_code(self.name)
-            if keycode.key == target_key:
-                tapsound.play()"""
+    
 
 button = pygame.sprite.Group()
 button1 = Button('1',0)
@@ -105,9 +93,6 @@ class Note(pygame.sprite.Sprite):
         self.rect.top +=starspeed
         if self.rect.top >720 : self.rect.bottom = -8*80 ; self.rect.top +=starspeed
 
-        """if self.rect.colliderect(woodrect):
-            if not hasattr(star, 'collision_time'):
-                star.collision_time = pygame.time.get_ticks()"""
 
 starcol0 = pygame.sprite.Group()
 starcol1= pygame.sprite.Group()
