@@ -60,20 +60,6 @@ class Button(pygame.sprite.Sprite):
         self.sound = pygame.mixer.Sound('existentialtaco-confirm-tap-394001.mp3')
 
 
-    """def pressbutton(self,event):
-        if event.type == pygame.KEYDOWN:
-            if event.key == self.target_key:
-                self.sound.play()
-                # Visual feedback: flash the button color
-                self.image.fill((255, 255, 255))"""
-
-
-
-    """ self.pressbutton(event)
-            if event.type == pygame.KEYDOWN:
-            target_key = pygame.key.key_code(self.name)
-            if keycode.key == target_key:
-                tapsound.play()"""
 
 button = pygame.sprite.Group()
 button1 = Button('1',0)
@@ -209,26 +195,6 @@ while running:
         if star.rect.top < 0:
             if hasattr(star, 'hit'): del star.hit
         
-        """if star.rect.colliderect(woodrect):
-            if not hasattr(star, 'collision_time'):
-                star.collision_time = pygame.time.get_ticks()
-        
-        for star in starcol0.sprites() + starcol1.sprites():
-            if hasattr(star, 'collision_time'):
-                # Calculate the difference in time
-                # abs() ensures we catch hits 10ms before OR 10ms after
-                time_diff = abs(press_time - star.collision_time)
-                if time_diff <= 50:
-                    tapsound.play()
-
-        for star in starcol0:
-            if not star.rect.colliderect(woodrect):
-                if hasattr(star, 'collision_time'):
-                    del star.collision_time"""
-        
-
-
-    #if all note past, end game
 
 
     pygame.display.flip()
