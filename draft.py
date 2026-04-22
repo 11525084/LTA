@@ -14,9 +14,9 @@ delta_time = 0.1
 current_track = None
 
 #grahic
-mika =pygame.image.load('mika nmahope (1).png').convert_alpha()
+#mika =pygame.image.load('mika nmahope (1).png').convert_alpha()
 kogi = pygame.image.load('music notes.png').convert_alpha()
-ishi = pygame.image.load('ishikiri nmahope.png')
+#ishi = pygame.image.load('ishikiri nmahope.png')
 bg = pygame.image.load('7c6f5669-5bc2-47da-a3e6-ad05d613997d (1).jpg')
 wood = pygame.image.load('wood_bg.webp')
 wood = pygame.transform.scale(wood, screen.get_size())
@@ -60,8 +60,20 @@ class Button(pygame.sprite.Sprite):
         self.sound = pygame.mixer.Sound('existentialtaco-confirm-tap-394001.mp3')
 
 
+    """def pressbutton(self,event):
+        if event.type == pygame.KEYDOWN:
+            if event.key == self.target_key:
+                self.sound.play()
+                # Visual feedback: flash the button color
+                self.image.fill((255, 255, 255))"""
 
-    
+
+
+    """ self.pressbutton(event)
+            if event.type == pygame.KEYDOWN:
+            target_key = pygame.key.key_code(self.name)
+            if keycode.key == target_key:
+                tapsound.play()"""
 
 button = pygame.sprite.Group()
 button1 = Button('1',0)
@@ -87,24 +99,35 @@ class Note(pygame.sprite.Sprite):
             self.rect = self.image.get_rect(topleft =(100+80*(0+barnumber),(-240*rownumber)))
         if barnumber >0:
             self.rect = self.image.get_rect(topleft = (100+100*(0+barnumber),(-120*rownumber)))
+        if barnumber ==5:
+            self.rect = self.image.get_rect(topleft = (100+(100)*(0+barnumber),(-80*rownumber)))    
         
         
     def update(self,starspeed = 10):
         self.rect.top +=starspeed
         if self.rect.top >720 : self.rect.bottom = -8*80 ; self.rect.top +=starspeed
 
+        """if self.rect.colliderect(woodrect):
+            if not hasattr(star, 'collision_time'):
+                star.collision_time = pygame.time.get_ticks()"""
 
 starcol0 = pygame.sprite.Group()
 starcol1= pygame.sprite.Group()
+starcol3 = pygame.sprite.Group()
+starcol5 = pygame.sprite.Group()
 star00 = Note(0,0)
 star02 = Note(0,2)
 star03 =Note(0,3) ;star10 =Note(1,0);star7=Note(1,1) ;star8=Note(1,2);star9=Note(1,3);star0=Note(1,4); star15=Note(1,5)
 star01 =Note(0,1)
 star04 =Note(0,4) ; star05 = Note(0,5) 
+star30 = Note(3,0);star31 = Note(3,1);star32= Note(3,2) ; star33 = Note(3,3)
+star50 = Note(5,0);star51 = Note(5,1);star52= Note(5,2) ; star53 = Note(5,3);star54 = Note(5,4)
+
 
 starcol0.add(star00,star01,star02,star03,star04)
 starcol1.add(star10,star7,star8,star9,star0,star15)
-
+starcol3.add(star30,star31,star32,star33)
+starcol5.add(star50,star51,star52,star53,star54)
 
 
 clock =pygame.time.Clock()
@@ -170,14 +193,16 @@ while running:
         if kogirect.left >=1080: kogirect.left = -340 ;kogirect.left +=6
         
 
-        starcol0.update() ; 
-        starcol1.update() ; 
-        starcol0.draw(screen) ; starcol1.draw(screen)
+        starcol0.update() 
+        starcol1.update() 
+        starcol3.update()
+        starcol5.update()
+        starcol0.draw(screen) ; starcol1.draw(screen) ; starcol3.draw(screen) ; starcol5.draw(screen)
 
         screen.blit(wood,woodrect)
         button.draw(screen)    
 
-        for star in starcol0.sprites() + starcol1.sprites():
+        for star in starcol0.sprites() + starcol1.sprites() + starcol3.sprites() + starcol5.sprites():
             if star.rect.colliderect(woodrect) and not hasattr(star, 'hit'):
                 tapsound.play()
                 star.hit = True
