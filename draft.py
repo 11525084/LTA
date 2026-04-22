@@ -14,9 +14,7 @@ delta_time = 0.1
 current_track = None
 
 #grahic
-#mika =pygame.image.load('mika nmahope (1).png').convert_alpha()
 kogi = pygame.image.load('music notes.png').convert_alpha()
-#ishi = pygame.image.load('ishikiri nmahope.png')
 bg = pygame.image.load('7c6f5669-5bc2-47da-a3e6-ad05d613997d (1).jpg')
 wood = pygame.image.load('wood_bg.webp')
 wood = pygame.transform.scale(wood, screen.get_size())
